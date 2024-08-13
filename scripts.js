@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let images = [];
     let keywords = [];
-    let currentKeyword = 'all';
     let currentPage = 0;
     const itemsPerPage = 20;
 
@@ -60,7 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             card.addEventListener('click', () => {
-                window.open(image.urlLink, '_blank');
+                //openInfoPage(image);
+                window.open('/pages/'+image.urlLink+'.html', '_blank');
             });
             imageCardContainer.appendChild(card);
         });
@@ -71,6 +71,45 @@ document.addEventListener('DOMContentLoaded', () => {
             loadMoreBtn.style.display = 'none';
         }
     }
+    // 动态显示内容，有一些缺点
+    // function openInfoPage(image) {
+    //     // 获取当前页面的主URL
+    //     const currentUrl = window.location.origin;
+    //     // 拼接image.imageUrl
+    //     const fullImageUrl = currentUrl + image.urlLink;
+    //     console.log(fullImageUrl);
+    //     // 创建并打开新标签页
+    //     const infoWindow = window.open(fullImageUrl, '_blank');
+    
+    //     // 使用 image 对象生成HTML内容
+    //     const infoHtml = generateInfoHtml(image);
+    
+    //     // 写入生成的HTML内容到新标签页
+    //     infoWindow.document.write(infoHtml);
+    //     infoWindow.document.close();
+    //     // 修改新标签页的地址栏 URL
+    //     infoWindow.history.replaceState(null, '', fullImageUrl);
+    // }
+    
+    // function generateInfoHtml(image) {
+    //     // 根据传入的 image 对象生成HTML内容
+    //     return `
+    //         <!DOCTYPE html>
+    //         <html lang="en">
+    //         <head>
+    //             <meta charset="UTF-8">
+    //             <title>${image.title}</title>
+    //         </head>
+    //         <body>
+    //             <h1>${image.title}</h1>
+    //             <p>URL: <a href="${image.urlLink}" target="_blank">${image.urlLink}</a></p>
+    //             <!-- 在这里添加更多信息，例如图片 -->
+    //             ${image.imageUrl ? `<img src="${image.imageUrl}" alt="${image.title}">` : ''}
+    //         </body>
+    //         </html>
+    //     `;
+    // }
+
 
     // 搜索功能
     searchBtn.addEventListener('click', () => {

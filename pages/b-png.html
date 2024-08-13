@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>${image.title}</title>
+</head>
+<body>
+<h1>${image.title}</h1>
+<p>URL: <a href="${image.urlLink}" target="_blank">${image.urlLink}</a></p>
+<!-- 在这里添加更多信息，例如图片 -->
+${image.imageUrl ? `<img src="${image.imageUrl}" alt="${image.title}">` : ''}
+</body>
+</html>
