@@ -1,15 +1,51 @@
 /* styles.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7fafc;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between; /* 这将使logo和nav分布在两端 */
+    align-items: center; /* 垂直居中 */
+    background-color: #333;
+}
+
+header .logo {
+    max-height: 100%; /* 或者具体的像素值 */
+}
+header .logo img {
+    height: 100px; /* 或者具体的像素值 */
+    width: auto;
+    object-fit: contain; /* 保持图片比例，适应容器 */
+}
+
+header nav {
+    text-align: center;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .container {
     max-width: 60rem;
     background-color: white;
-    border-radius: 1rem;
+    border-radius: 0rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     padding: 20px;
@@ -165,4 +201,33 @@ body {
 
 #load-more-btn:hover {
     background-color: #ae0dee;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+.footer-content {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin: 0;
+}
+
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    margin: 0 10px;
+}
+
+.social-media img {
+    width: 20px;
+    height: 20px;
 }
