@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.classList.add('image-card');
             card.innerHTML = `
-                <img src="pic/${image.picPath}" alt="${image.title}">
+                <img src="pic/${image.picSmall}" alt="${image.title}">
                 <div class="info">
                     <h3>${image.title}</h3>
                     <p>${image.tags.join(', ')}</p>
