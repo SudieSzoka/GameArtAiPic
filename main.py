@@ -113,8 +113,8 @@ def main(total_dell):
 
             urlLink = row['urlLink']
             path_html = f'./pages/{urlLink}'
-            if not os.path.exists(path_html):
-            # if True:
+            # if not os.path.exists(path_html):
+            if True:
                 content = creatHtml(row)
                 # print(content)
                 with open(path_html, 'w', encoding='utf-8') as f:

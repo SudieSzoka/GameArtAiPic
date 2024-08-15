@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             button.classList.add('keyword-btn');
             button.textContent = keyword;
             button.dataset.keyword = keyword;
-            if (keyword === '全部') {
+            if (keyword === '最新') {
                 button.classList.add('selected');
             }
             keywordContainer.appendChild(button);
