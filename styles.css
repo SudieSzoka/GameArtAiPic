@@ -241,7 +241,76 @@ footer {
     width: 20px;
     height: 20px;
 }
+/* 单个网页图片 */
+.sigle {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
 
+.sigle:hover {
+    transform: translateY(-10px);
+}
+
+.image-sigle {
+    flex: 1;
+    max-width: 30%;
+    margin-right: 20px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.image-sigle img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-sigle img:hover {
+    transform: scale(1.05);
+}
+
+.image-info {
+    width: 80%;
+    max-width: 600px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.image-info h2 {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+    color: #fff;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+}
+.image-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.image-info th, .image-info td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.image-info th {
+    min-width: 80px; /* 或者其他合适的值 */
+    text-align: justify;
+    text-align-last: justify; /* 对最后一行进行对齐 */
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+.image-info tr:hover {
+    background-color: #f1f1f1;
+}
 /* 移动端适配 */
 @media screen and (max-width: 768px) {
     /* 头部样式调整 */
@@ -314,6 +383,22 @@ footer {
         left: 50%; /* 如果需要居中，可以添加此属性 */
         transform: translateX(-50%); /* 如果需要居中，可以添加此属性 */
         width: 90%;
+    }
+
+    .sigle {
+        display: flex;
+        flex-direction: column; /* 垂直排列 */
+        align-items: center; /* 居中对齐 */
+    }
+
+    .image-sigle {
+        max-width: 100%; /* 使图像占满宽度 */
+        margin-right: 0; /* 移除右边距 */
+        margin-bottom: 20px; /* 添加底部边距以分隔元素 */
+    }
+    
+    .image-info {
+        width: 100%; /* 使信息部分占满宽度 */
     }
 }
 

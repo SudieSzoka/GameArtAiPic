@@ -67,7 +67,8 @@ def main(total_dell,file):
         data = json.load(f)
     if total_dell == 1:
         data = []
-    # print(data)
+        print('删除所有数据，重新开始')
+    old_len = len(data)
     tags_total = []
     for index, row in df.iterrows():
         try:
@@ -114,18 +115,20 @@ def main(total_dell,file):
 
             urlLink = row['urlLink']
             path_html = f'./pages/{urlLink}'
-            needCreatHtml = False
-            if total_dell:
-                needCreatHtml = True
-            else:
-                if not os.path.exists(path_html):
-                    needCreatHtml = True
-            if needCreatHtml:
+            # needCreatHtml = False
+            # if total_dell:
+            #     needCreatHtml = True
+            # else:
+            #     if not os.path.exists(path_html):
+            #         needCreatHtml = True
+            if True:
                 content = creatHtml(row)
                 # print(content)
                 with open(path_html, 'w', encoding='utf-8') as f:
                     f.write(content)
             df.loc[index,'delled'] = 1
+    new_len = len(data)
+    print(f'数据新增:{new_len - old_len}条')
     with open(data_json_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
     # print(df)
