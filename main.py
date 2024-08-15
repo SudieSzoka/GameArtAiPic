@@ -113,8 +113,8 @@ def main(total_dell):
 
             urlLink = row['urlLink']
             path_html = f'./pages/{urlLink}'
-            # if not os.path.exists(path_html):
-            if True:
+            if not os.path.exists(path_html):
+            # if True:
                 content = creatHtml(row)
                 # print(content)
                 with open(path_html, 'w', encoding='utf-8') as f:
@@ -122,7 +122,7 @@ def main(total_dell):
             df.loc[index,'delled'] = 1
     with open(data_json_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
-    print(df)
+    # print(df)
     if total_dell == 1:
         dellTags(tags_total,1)
     df.to_excel(file, index=False)
