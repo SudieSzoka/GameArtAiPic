@@ -82,14 +82,16 @@ def main(total_dell):
         else:
             needDell = 1
         if needDell == 1:
-            if row['refreshTime'] == "":
+            if row['refreshTime'] == "" or row['refreshTime'] == 0 or row['refreshTime'] == 0.0:
                 time_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 row['refreshTime'] = time_str
                 df.loc[index,'refreshTime'] = time_str
             
             tags = row['tags'].split(",")
             if total_dell == 1:
-                tags_total += tags
+                for t in tags:
+                    if t not in tags_total:
+                        tags_total.append(t)
             dellTags(tags)
 
             picPath = row['picPath']

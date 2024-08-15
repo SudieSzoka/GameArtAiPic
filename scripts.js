@@ -39,22 +39,41 @@ document.addEventListener('DOMContentLoaded', () => {
             keywordContainer.appendChild(button);
         });
     }
-
+    function truncateTitle(title, maxWidth, delimiter = ' ') {
+        let truncated = '';
+        let words = title.split(delimiter);
+        let currentWidth = 0;
+    
+        for (let word of words) {
+            if ((currentWidth + word.length) > maxWidth) break;
+            truncated += (truncated.length > 0 ? delimiter : '') + word;
+            currentWidth += word.length + (truncated.length > 0 ? delimiter.length : 0); // 加上分隔符的宽度
+        }
+    
+        // 如果截取后的字符串与原字符串不同，则添加省略号
+        return truncated.length < title.length ? truncated + '...' : truncated;
+    }
     // 显示图片卡片
     function displayImages(images) {
         const start = currentPage * itemsPerPage;
         const end = start + itemsPerPage;
         const pageImages = images.slice(start, end);
+        const maxTitle = 20;
+        const maxDesc = 40;
 
         pageImages.forEach(image => {
             const card = document.createElement('div');
+            // console.log(image.title);
+            const truncatedTitle = truncateTitle(image.title, maxTitle, '-');
+            // console.log(truncatedTitle)
+            const truncatedDesc = truncateTitle(image.desc, maxDesc, ' ');
             card.classList.add('image-card');
             card.innerHTML = `
                 <img src="pic/${image.picSmall}" alt="${image.title}">
                 <div class="info">
-                    <h3>${image.title}</h3>
+                    <h3>${truncatedTitle}</h3>
                     <p>${image.tags.join(', ')}</p>
-                    <p>${image.desc}</p>
+                    <p>${truncatedDesc}</p>
                     <button class="detail-btn" data-url="${image.urlLink}">详情</button>
                 </div>
             `;
