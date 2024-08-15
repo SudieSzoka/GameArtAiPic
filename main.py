@@ -58,8 +58,8 @@ def dellTags(tags,reWrite = 0):
     with open(path_tags, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
     
-def main(total_dell):
-    file = 'info.xlsx'
+def main(total_dell,file):
+    # file = 'info.xlsx'
     df = pd.read_excel(file).fillna(0)
     # print(df)
     data_json_path = './data/images.json'
@@ -110,11 +110,17 @@ def main(total_dell):
                             "hot":row['hot']
                         }
             data.append(data_row)
+            data = [data_row] + data
 
             urlLink = row['urlLink']
             path_html = f'./pages/{urlLink}'
-            # if not os.path.exists(path_html):
-            if True:
+            needCreatHtml = False
+            if total_dell:
+                needCreatHtml = True
+            else:
+                if not os.path.exists(path_html):
+                    needCreatHtml = True
+            if needCreatHtml:
                 content = creatHtml(row)
                 # print(content)
                 with open(path_html, 'w', encoding='utf-8') as f:
@@ -128,5 +134,6 @@ def main(total_dell):
     df.to_excel(file, index=False)
 
 if __name__ == '__main__':
-    total_dell = 1
-    main(total_dell)
+    total_dell = 0
+    dell_file = 'info_240816.xlsx'
+    main(total_dell,dell_file)
