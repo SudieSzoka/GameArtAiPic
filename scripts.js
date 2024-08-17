@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let images = [];
     let keywords = [];
     let currentPage = 0;
-    const itemsPerPage = 20;
+    const itemsPerPage = 10;
 
     // 加载JSON文件
     fetch('data/images.json')
