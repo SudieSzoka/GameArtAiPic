@@ -110,7 +110,7 @@ def main(total_dell,file):
                             "refreshTime":row['refreshTime'],
                             "hot":row['hot']
                         }
-            data.append(data_row)
+            # data.append(data_row)
             data = [data_row] + data
 
             urlLink = row['urlLink']
@@ -138,5 +138,5 @@ def main(total_dell,file):
 
 if __name__ == '__main__':
     total_dell = 0
-    dell_file = 'info_240816.xlsx'
+    dell_file = 'delled.xlsx'
     main(total_dell,dell_file)
