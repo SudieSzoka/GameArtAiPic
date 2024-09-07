@@ -6,35 +6,13 @@ import pandas as pd
 from PIL import Image
 
 output_width, output_height = 300, 300
-def resize_and_crop_image(input_image_path, output_width, output_height, output_path):
+def resize_and_crop_image(input_image_path,output_path):
     # 打开原始图片
     with Image.open(input_image_path) as img:
-        # 获取原始图片的宽度和高度
-        original_width, original_height = img.size
-        
-        # 计算目标宽高比
-        ratio = max(output_width/original_width, output_height/original_height)
-        
-        # 计算缩放后的尺寸
-        new_width = int(original_width * ratio)
-        new_height = int(original_height * ratio)
-        
-        # 缩放图片，保持原始宽高比
-        img = img.resize((new_width, new_height), Image.LANCZOS)
-        
-        # 计算裁剪的位置
-        crop_width = output_width
-        crop_height = output_height
-        left = (new_width - crop_width) // 2
-        top = (new_height - crop_height) // 2
-        right = left + crop_width
-        bottom = top + crop_height
-        
-        # 裁剪图片
-        img = img.crop((left, top, right, bottom))
-        
-        # 保存图片
-        img.save(output_path)
+        # 等比例缩放，不超过 output_width, output_height
+        img.thumbnail((output_width, output_height))
+        # 保存问webp格式
+        img.save(output_path,'WEBP')
 
 template_path = './pages/template.html'
 with open(template_path, 'r', encoding='utf-8') as f:
@@ -97,9 +75,9 @@ def main(total_dell,file):
 
             picPath = row['picPath']
             pic_origin = './pic/' + picPath
-            output_name = 'small_' + picPath
+            output_name = 'small_' + picPath.replace('.png','.webp')
             output_path = './pic/' + output_name
-            resize_and_crop_image(pic_origin, output_width, output_height, output_path)
+            resize_and_crop_image(pic_origin, output_path)
             data_row =  {
                             "title":row['title'],
                             "desc":row['desc'],
@@ -115,12 +93,7 @@ def main(total_dell,file):
 
             urlLink = row['urlLink']
             path_html = f'./pages/{urlLink}'
-            # needCreatHtml = False
-            # if total_dell:
-            #     needCreatHtml = True
-            # else:
-            #     if not os.path.exists(path_html):
-            #         needCreatHtml = True
+
             if True:
                 content = creatHtml(row)
                 # print(content)
